@@ -40,10 +40,20 @@
             margin-bottom: 50px;
         }
 
+        /* Estilo do Logo Tipográfico exato */
         header h1 {
-            font-size: 2.5rem;
-            color: var(--accent-color);
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
             margin-bottom: 10px;
+        }
+
+        header h1 .logo-white {
+            color: var(--text-primary);
+        }
+
+        header h1 .logo-blue {
+            color: var(--accent-color);
         }
 
         header p {
@@ -170,13 +180,15 @@
     <div class="container">
         <header>
             <span class="badge">Rede Polygon (Chain ID 137) • Agente Low-code Assistido</span>
-            <h1>ALCAlab DAO</h1>
+            <h1>
+                <span class="logo-white">ALCA</span><span class="logo-blue">lab</span><span class="logo-white">DAO</span>
+            </h1>
             <p>Ecossistema descentralizado de pesquisa aplicada, tecnologia modular e inovação independente.</p>
         </header>
 
         <section>
             <h2>Sobre o Ecossistema</h2>
-            <p>A <strong>ALCAlab DAO</strong> é uma organização autônoma experimental focada no desenvolvimento de tecnologias modulares, locais e assistidas por inteligência artificial. Nossa arquitetura une autonomia, transparência documental e governança progressiva.</p>
+            <p>A <strong><span class="logo-white">ALCA</span><span class="logo-blue">lab</span><span class="logo-white">DAO</span></strong> é uma organização autônoma experimental focada no desenvolvimento de tecnologias modulares, locais e assistidas por inteligência artificial. Nossa arquitetura une autonomia, transparência documental e governança progressiva.</p>
             <div class="btn-container">
                 <a href="#documentos" class="btn">Ler Carta Fundamental</a>
                 <a href="https://github.com/alcalab/alcalab-dao" target="_blank" class="btn btn-outline">Repositório GitHub</a>
@@ -216,7 +228,7 @@
         </section>
 
         <footer>
-            <p>&copy; ALCAlab DAO. Licenciamento autônomo e experimental sob os termos da Carta Fundamental.</p>
+            <p>&copy; <span class="logo-white">ALCA</span><span class="logo-blue">lab</span><span class="logo-white">DAO</span>. Licenciamento autônomo e experimental sob os termos da Carta Fundamental.</p>
         </footer>
     </div>
 
