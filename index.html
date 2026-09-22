@@ -3,233 +3,623 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#05070b">
+    <meta name="description" content="ALCAlab DAO — ecossistema descentralizado de pesquisa aplicada, tecnologia modular e inovação independente.">
     <title>ALCAlab DAO | NO.va GranFuturo</title>
+
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: #131c2e;
-            --text-primary: #f3f4f6;
-            --text-secondary: #9ca3af;
-            --accent-color: #38bdf8;
-            --accent-hover: #0ea5e9;
-            --border-color: #1e293b;
+            --bg: #05070b;
+            --bg-soft: #080c13;
+            --surface: rgba(13, 18, 29, .82);
+            --surface-2: rgba(18, 25, 39, .72);
+            --line: rgba(255,255,255,.09);
+            --line-blue: rgba(0, 132, 255, .34);
+            --white: #f4f7fb;
+            --muted: #8d98aa;
+            --blue: #008cff;
+            --blue-2: #00a2ff;
+            --shadow: 0 24px 70px rgba(0,0,0,.38);
+            --radius: 20px;
+            --max: 1180px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.6;
-            padding: 20px;
+            min-height: 100vh;
+            color: var(--white);
+            background:
+                radial-gradient(circle at 50% -10%, rgba(0, 132, 255, .13), transparent 34rem),
+                radial-gradient(circle at 10% 40%, rgba(0, 132, 255, .045), transparent 28rem),
+                var(--bg);
+            font-family: Inter, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.65;
+            overflow-x: hidden;
         }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: .28;
+            background-image:
+                linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+            background-size: 42px 42px;
+            mask-image: linear-gradient(to bottom, black, transparent 80%);
+        }
+
+        a { color: inherit; }
 
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            width: min(var(--max), calc(100% - 40px));
+            margin-inline: auto;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 50px;
+        /* NAV */
+        .nav-wrap {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(5,7,11,.72);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255,255,255,.06);
         }
 
-        header h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 10px;
-        }
-
-        header h1 .logo-white {
-            color: var(--text-primary);
-        }
-
-        header h1 .logo-blue {
-            color: var(--accent-color);
-        }
-
-        header p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-        }
-
-        .badge {
-            display: inline-block;
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--accent-color);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-        }
-
-        section {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        section h2 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--text-primary);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-
-        .grid-modules {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .module-card {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border-color);
-            padding: 20px;
-            border-radius: 8px;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-
-        .module-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent-color);
-        }
-
-        .module-card h3 {
-            font-size: 1.1rem;
-            color: var(--accent-color);
-            margin-bottom: 8px;
-        }
-
-        .module-card p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .info-list {
-            list-style: none;
-        }
-
-        .info-list li {
-            margin-bottom: 12px;
-            color: var(--text-secondary);
-        }
-
-        .info-list strong {
-            color: var(--text-primary);
-        }
-
-        .btn-container {
+        nav {
+            min-height: 72px;
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            text-decoration: none;
+            font-weight: 800;
+            letter-spacing: -.03em;
+        }
+
+        .brand-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--blue);
+            box-shadow: 0 0 18px rgba(0,140,255,.8);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .9rem;
+            transition: color .2s ease;
+        }
+
+        .nav-links a:hover { color: var(--white); }
+
+        /* HERO */
+        .hero {
+            min-height: 690px;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 80px 0 70px;
+        }
+
+        .hero-inner { max-width: 950px; }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 13px;
+            border: 1px solid var(--line-blue);
+            border-radius: 999px;
+            background: rgba(0,140,255,.06);
+            color: #7ec8ff;
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+        .status i {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 10px rgba(34,197,94,.75);
+        }
+
+        .logo-hero {
+            display: block;
+            width: min(850px, 94vw);
+            height: auto;
+            margin: 35px auto 22px;
+            filter: drop-shadow(0 20px 50px rgba(0,0,0,.55));
+        }
+
+        .hero h1 {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+        }
+
+        .hero-lead {
+            max-width: 780px;
+            margin: 0 auto;
+            color: #aab4c4;
+            font-size: clamp(1rem, 1.8vw, 1.18rem);
+        }
+
+        .hero-lead strong { color: var(--white); }
+
+        .actions {
+            display: flex;
+            justify-content: center;
             flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
         }
 
         .btn {
-            background-color: var(--accent-color);
-            color: #0b0f19;
-            padding: 10px 20px;
-            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 0 20px;
+            border-radius: 11px;
+            border: 1px solid transparent;
             text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.2s;
+            font-weight: 750;
+            font-size: .9rem;
+            transition: transform .2s ease, border-color .2s ease, background .2s ease;
         }
 
-        .btn:hover {
-            background-color: var(--accent-hover);
+        .btn:hover { transform: translateY(-2px); }
+
+        .btn-primary {
+            color: #00111e;
+            background: linear-gradient(135deg, #18a0ff, #0079e8);
+            box-shadow: 0 12px 30px rgba(0,140,255,.18);
         }
 
-        .btn-outline {
-            background: transparent;
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
+        .btn-secondary {
+            color: var(--white);
+            border-color: var(--line);
+            background: rgba(255,255,255,.025);
         }
 
-        .btn-outline:hover {
-            background: rgba(56, 189, 248, 0.1);
+        .btn-secondary:hover {
+            border-color: rgba(0,140,255,.4);
+            background: rgba(0,140,255,.06);
         }
 
+        /* SECTIONS */
+        main { padding-bottom: 80px; }
+
+        section { scroll-margin-top: 95px; }
+
+        .section {
+            margin-top: 28px;
+            padding: 34px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: linear-gradient(145deg, rgba(15,21,34,.88), rgba(8,12,20,.78));
+            box-shadow: var(--shadow);
+        }
+
+        .section-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 26px;
+        }
+
+        .eyebrow {
+            color: var(--blue-2);
+            font-size: .74rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+        }
+
+        h2 {
+            font-size: clamp(1.45rem, 3vw, 2rem);
+            letter-spacing: -.035em;
+            line-height: 1.15;
+        }
+
+        .section-intro {
+            max-width: 760px;
+            color: var(--muted);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.25fr .75fr;
+            gap: 26px;
+        }
+
+        .about-copy {
+            color: #b5bfce;
+            font-size: .98rem;
+        }
+
+        .about-copy strong { color: var(--white); }
+
+        .principles {
+            display: grid;
+            gap: 10px;
+        }
+
+        .principle {
+            padding: 14px 15px;
+            border: 1px solid var(--line);
+            border-radius: 13px;
+            background: rgba(255,255,255,.018);
+        }
+
+        .principle b {
+            display: block;
+            font-size: .86rem;
+            margin-bottom: 3px;
+        }
+
+        .principle span {
+            color: var(--muted);
+            font-size: .82rem;
+        }
+
+        /* MODULES */
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .module {
+            min-height: 190px;
+            padding: 22px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background:
+                linear-gradient(145deg, rgba(17,25,40,.86), rgba(9,14,24,.72));
+            transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+        }
+
+        .module::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            right: -55px;
+            bottom: -55px;
+            border-radius: 50%;
+            background: rgba(0,140,255,.13);
+            filter: blur(4px);
+        }
+
+        .module:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0,140,255,.4);
+            box-shadow: 0 18px 45px rgba(0,0,0,.28);
+        }
+
+        .module-index {
+            color: rgba(255,255,255,.28);
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+        }
+
+        .module h3 {
+            margin: 18px 0 8px;
+            font-size: 1rem;
+            letter-spacing: -.015em;
+        }
+
+        .module p {
+            color: var(--muted);
+            font-size: .84rem;
+        }
+
+        /* GOVERNANCE */
+        .governance-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .data-card {
+            padding: 20px;
+            border: 1px solid var(--line);
+            border-radius: 15px;
+            background: rgba(255,255,255,.018);
+        }
+
+        .data-card .label {
+            display: block;
+            color: #6f7c90;
+            font-size: .7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .11em;
+            margin-bottom: 8px;
+        }
+
+        .data-card .value {
+            font-size: .94rem;
+            color: #dce3ec;
+            font-weight: 650;
+        }
+
+        .notice {
+            margin-top: 15px;
+            padding: 15px 17px;
+            border-left: 2px solid var(--blue);
+            background: rgba(0,140,255,.045);
+            color: #9caabd;
+            font-size: .83rem;
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* FOOTER */
         footer {
-            text-align: center;
-            margin-top: 50px;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
+            padding: 45px 0 35px;
+            border-top: 1px solid var(--line);
+            color: #697587;
+            font-size: .78rem;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-brand {
+            color: #b9c2ce;
+            font-weight: 750;
+        }
+
+        .blue { color: var(--blue-2); }
+
+        @media (max-width: 900px) {
+            .modules { grid-template-columns: repeat(2, 1fr); }
+            .about-grid { grid-template-columns: 1fr; }
+            .governance-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            .container { width: min(100% - 24px, var(--max)); }
+            .nav-links { display: none; }
+            .hero { min-height: 610px; padding-top: 55px; }
+            .logo-hero { width: 100%; margin-top: 30px; }
+            .section { padding: 23px 18px; border-radius: 16px; }
+            .section-head { display: block; }
+            .modules { grid-template-columns: 1fr; }
+            .module { min-height: 160px; }
+            .footer-row { flex-direction: column; align-items: flex-start; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                transition: none !important;
+                animation: none !important;
+            }
         }
     </style>
 </head>
+
 <body>
+    <div class="nav-wrap">
+        <nav class="container" aria-label="Navegação principal">
+            <a class="nav-brand" href="#inicio" aria-label="ALCAlab DAO">
+                <span class="brand-dot"></span>
+                <span>ALCA<span class="blue">lab</span> DAO</span>
+            </a>
 
-    <div class="container">
-        <header>
-            <span class="badge">Rede Polygon (Chain ID 137) • Fase Consultiva</span>
-            <h1>
-                <span class="logo-white">ALCA</span><span class="logo-blue">lab</span><span class="logo-white">DAO</span>
-            </h1>
-            <p>Ecossistema descentralizado de pesquisa aplicada, tecnologia modular e inovação independente.</p>
-        </header>
-
-        <section>
-            <h2>Sobre o Ecossistema</h2>
-            <p>A <strong><span class="logo-white">ALCA</span><span class="logo-blue">lab</span><span class="logo-white">DAO</span></strong> é uma organização autônoma experimental focada no desenvolvimento de tecnologias modulares, locais e assistidas por inteligência artificial. Nossa arquitetura une autonomia, transparência documental e governança progressiva.</p>
-            <div class="btn-container">
-                <a href="carta-fundamental.html" class="btn">Ler Carta Fundamental (v3.0)</a>
-                <a href="https://github.com/alcalab/alcalab-dao" target="_blank" class="btn btn-outline">Repositório GitHub</a>
+            <div class="nav-links">
+                <a href="#ecossistema">Ecossistema</a>
+                <a href="#modulos">Módulos</a>
+                <a href="#governanca">Governança</a>
+                <a href="carta-fundamental.html">Carta Fundamental</a>
             </div>
-        </section>
-
-        <section>
-            <h2>Ecossistema NO.va GranFuturo</h2>
-            <p>Conheça os módulos centrais que compõem a arquitetura expansível do projeto:</p>
-            <div class="grid-modules">
-                <div class="module-card">
-                    <h3>NO.va Code</h3>
-                    <p>Programação em Python e HTML por abordagem low-code e assistência computacional orientada a linguagem natural.</p>
-                </div>
-                <div class="module-card">
-                    <h3>Calculadora GranFuturo</h3>
-                    <p>Conversões avançadas de unidades, registro e consolidação de operações com geração de memória de cálculo.</p>
-                </div>
-                <div class="module-card">
-                    <h3>NO.va CAD</h3>
-                    <p>Leitura, criação, edição e análise de desenhos técnicos assistidos por computador em ambiente modular.</p>
-                </div>
-                <div class="module-card">
-                    <h3>Utilitários Locais</h3>
-                    <p>Bloco de notas integrado, compactador de arquivos, agenda eletrônica e sistema de pesquisa rápida em diretórios.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="governanca">
-            <h2>Governança e Transparência On-Chain</h2>
-            <ul class="info-list">
-                <li><strong>Fase Atual:</strong> Fase Fundadora (Caráter Consultivo e Transicional).</li>
-                <li><strong>Infraestrutura de Tesouraria:</strong> Safe (Gnosis) na rede Polygon PoS (Em estruturação final).</li>
-                <li><strong>Data de Publicação da Versão Vigente:</strong> 21/09/2026</li>
-            </ul>
-        </section>
-
-        <footer>
-            <p>&copy; <span class="logo-white">ALCA</span><span class="logo-blue">lab</span><span class="logo-white">DAO</span>. Licenciamento autônomo e experimental sob os termos da Carta Fundamental.</p>
-        </footer>
+        </nav>
     </div>
 
+    <header class="hero" id="inicio">
+        <div class="container hero-inner">
+            <div class="status">
+                <i></i>
+                Polygon • Chain ID 137 • Fase consultiva
+            </div>
+
+            <h1>ALCAlab DAO</h1>
+
+            <!-- Logo fornecido pelo projeto, preservado como elemento central da identidade visual -->
+            <img
+                class="logo-hero"
+                src="ALCAlabDAO-logo.png"
+                alt="ALCAlab DAO"
+            >
+
+            <p class="hero-lead">
+                Ecossistema descentralizado de <strong>pesquisa aplicada</strong>,
+                tecnologia modular e inovação independente, com arquitetura preparada
+                para evolução progressiva e transparência documental.
+            </p>
+
+            <div class="actions">
+                <a class="btn btn-primary" href="#ecossistema">Explorar ecossistema</a>
+                <a class="btn btn-secondary" href="carta-fundamental.html">Carta Fundamental v3.0</a>
+                <a class="btn btn-secondary" href="https://github.com/alcalab/alcalab-dao" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section" id="ecossistema">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow">01 / Ecossistema</div>
+                    <h2>Uma arquitetura tecnológica modular.</h2>
+                </div>
+                <p class="section-intro">
+                    A proposta organiza projetos, ferramentas e serviços independentes
+                    dentro de uma estrutura comum de documentação, desenvolvimento e evolução.
+                </p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-copy">
+                    <p>
+                        A <strong>ALCAlab DAO</strong> é apresentada como uma organização
+                        autônoma experimental voltada ao desenvolvimento de tecnologias
+                        modulares, locais e assistidas por inteligência artificial.
+                        Seu ecossistema combina autonomia operacional, documentação,
+                        experimentação tecnológica e mecanismos de governança em evolução.
+                    </p>
+                    <br>
+                    <p>
+                        O núcleo <strong>NO.va GranFuturo</strong> reúne aplicações e motores
+                        especializados que podem funcionar de forma independente ou integrada,
+                        mantendo uma arquitetura expansível.
+                    </p>
+                </div>
+
+                <div class="principles">
+                    <div class="principle">
+                        <b>Arquitetura modular</b>
+                        <span>Componentes independentes e expansíveis.</span>
+                    </div>
+                    <div class="principle">
+                        <b>Desenvolvimento local</b>
+                        <span>Prioridade para ferramentas e processamento sob controle do projeto.</span>
+                    </div>
+                    <div class="principle">
+                        <b>Transparência documental</b>
+                        <span>Registro claro de versões, estruturas e documentos fundamentais.</span>
+                    </div>
+                    <div class="principle">
+                        <b>Governança progressiva</b>
+                        <span>Estrutura preparada para amadurecimento operacional.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="modulos">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow">02 / NO.va GranFuturo</div>
+                    <h2>Módulos do ecossistema.</h2>
+                </div>
+                <p class="section-intro">
+                    Um conjunto de ferramentas especializadas que pode crescer sem
+                    comprometer a identidade central da plataforma.
+                </p>
+            </div>
+
+            <div class="modules">
+                <article class="module">
+                    <span class="module-index">MODULE 01</span>
+                    <h3>NO.va Code</h3>
+                    <p>Programação em Python e HTML por linguagem natural, com abordagem modular e assistência computacional.</p>
+                </article>
+
+                <article class="module">
+                    <span class="module-index">MODULE 02</span>
+                    <h3>Calculadora GranFuturo</h3>
+                    <p>Conversões, registros, consolidação de operações e geração estruturada de memória de cálculo.</p>
+                </article>
+
+                <article class="module">
+                    <span class="module-index">MODULE 03</span>
+                    <h3>NO.va CAD</h3>
+                    <p>Leitura, criação, edição e análise de desenhos técnicos em um ambiente CAD modular.</p>
+                </article>
+
+                <article class="module">
+                    <span class="module-index">MODULE 04</span>
+                    <h3>Utilitários Locais</h3>
+                    <p>Ferramentas auxiliares para notas, compactação, agenda e pesquisa rápida em diretórios.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="governanca">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow">03 / Governança</div>
+                    <h2>Transparência e infraestrutura.</h2>
+                </div>
+                <p class="section-intro">
+                    Informações operacionais apresentadas de forma objetiva, separando
+                    estado atual, infraestrutura e documentação.
+                </p>
+            </div>
+
+            <div class="governance-grid">
+                <div class="data-card">
+                    <span class="label">Fase atual</span>
+                    <span class="value">Fase Fundadora — caráter consultivo e transicional</span>
+                </div>
+
+                <div class="data-card">
+                    <span class="label">Tesouraria</span>
+                    <span class="value">Safe / Gnosis — Polygon PoS — em estruturação final</span>
+                </div>
+
+                <div class="data-card">
+                    <span class="label">Versão vigente</span>
+                    <span class="value">Publicação: 21/09/2026</span>
+                </div>
+            </div>
+
+            <div class="notice">
+                As informações desta página são institucionais e descritivas. A Carta
+                Fundamental e os documentos oficiais do projeto devem prevalecer sobre
+                esta página em caso de divergência de conteúdo ou versão.
+            </div>
+
+            <div class="actions" style="justify-content:flex-start;">
+                <a class="btn btn-primary" href="carta-fundamental.html">Abrir Carta Fundamental</a>
+                <a class="btn btn-secondary" href="https://github.com/alcalab/alcalab-dao" target="_blank" rel="noopener noreferrer">Repositório GitHub ↗</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-row">
+            <div class="footer-brand">ALCA<span class="blue">lab</span> DAO</div>
+            <div>Licenciamento autônomo e experimental sob os termos da Carta Fundamental.</div>
+            <div>© 2026 ALCAlab DAO</div>
+        </div>
+    </footer>
 </body>
 </html>
