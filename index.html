@@ -10,18 +10,16 @@
     <style>
         :root {
             --bg: #05070b;
-            --bg-soft: #080c13;
             --surface: rgba(13, 18, 29, .82);
-            --surface-2: rgba(18, 25, 39, .72);
             --line: rgba(255,255,255,.09);
-            --line-blue: rgba(0, 132, 255, .34);
+            --line-blue: rgba(0, 140, 255, .35);
             --white: #f4f7fb;
             --muted: #8d98aa;
             --blue: #008cff;
             --blue-2: #00a2ff;
-            --shadow: 0 24px 70px rgba(0,0,0,.38);
+            --shadow: 0 24px 70px rgba(0,0,0,.5);
             --radius: 20px;
-            --max: 1180px;
+            --max: 1200px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,31 +30,31 @@
             min-height: 100vh;
             color: var(--white);
             background:
-                radial-gradient(circle at 50% -10%, rgba(0, 132, 255, .13), transparent 34rem),
-                radial-gradient(circle at 10% 40%, rgba(0, 132, 255, .045), transparent 28rem),
+                radial-gradient(circle at 50% -15%, rgba(0, 140, 255, .15), transparent 35rem),
+                radial-gradient(circle at 5% 35%, rgba(0, 140, 255, .05), transparent 30rem),
+                radial-gradient(circle at 95% 65%, rgba(0, 140, 255, .05), transparent 30rem),
                 var(--bg);
-            font-family: Inter, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.65;
+            font-family: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        body::before {
+        /* Efeito de luzes laterais estilo cockpit */
+        body::after {
             content: "";
             position: fixed;
-            inset: 0;
+            top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
-            opacity: .28;
-            background-image:
-                linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-            background-size: 42px 42px;
-            mask-image: linear-gradient(to bottom, black, transparent 80%);
+            z-index: 99;
+            background: 
+                radial-gradient(circle at 0% 20%, rgba(0,140,255,.08) 0%, transparent 40%),
+                radial-gradient(circle at 100% 20%, rgba(0,140,255,.08) 0%, transparent 40%);
         }
 
-        a { color: inherit; }
+        a { color: inherit; text-decoration: none; }
 
         .container {
-            width: min(var(--max), calc(100% - 40px));
+            width: min(var(--max), calc(100% - 48px));
             margin-inline: auto;
         }
 
@@ -65,76 +63,74 @@
             position: sticky;
             top: 0;
             z-index: 50;
-            background: rgba(5,7,11,.72);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+            background: rgba(5,7,11,.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255,255,255,.06);
         }
 
         nav {
-            min-height: 72px;
+            min-height: 76px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 24px;
         }
 
         .nav-brand {
             display: flex;
             align-items: center;
-            gap: 11px;
-            text-decoration: none;
-            font-weight: 800;
+            gap: 12px;
+            font-weight: 850;
+            font-size: 1.1rem;
             letter-spacing: -.03em;
         }
 
-        .brand-dot {
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            background: var(--blue);
-            box-shadow: 0 0 18px rgba(0,140,255,.8);
+        .nav-brand img {
+            height: 24px;
+            width: auto;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 28px;
+            gap: 32px;
         }
 
         .nav-links a {
             color: var(--muted);
-            text-decoration: none;
-            font-size: .9rem;
+            font-size: .88rem;
+            font-weight: 500;
             transition: color .2s ease;
         }
 
-        .nav-links a:hover { color: var(--white); }
+        .nav-links a:hover, .nav-links a.active { color: var(--white); }
 
         /* HERO */
         .hero {
-            min-height: 690px;
+            min-height: 720px;
             display: grid;
             place-items: center;
             text-align: center;
-            padding: 80px 0 70px;
+            padding: 70px 0 60px;
+            position: relative;
         }
 
-        .hero-inner { max-width: 950px; }
+        .hero-inner { max-width: 980px; }
 
         .status {
             display: inline-flex;
             align-items: center;
-            gap: 9px;
-            padding: 8px 13px;
+            gap: 10px;
+            padding: 9px 18px;
             border: 1px solid var(--line-blue);
             border-radius: 999px;
             background: rgba(0,140,255,.06);
             color: #7ec8ff;
-            font-size: .78rem;
-            font-weight: 700;
-            letter-spacing: .04em;
+            font-size: .75rem;
+            font-weight: 750;
+            letter-spacing: .08em;
             text-transform: uppercase;
+            box-shadow: 0 0 25px rgba(0,140,255,.12);
         }
 
         .status i {
@@ -142,31 +138,29 @@
             height: 7px;
             border-radius: 50%;
             background: #22c55e;
-            box-shadow: 0 0 10px rgba(34,197,94,.75);
+            box-shadow: 0 0 10px rgba(34,197,94,.8);
         }
 
         .logo-hero {
             display: block;
-            width: min(850px, 94vw);
+            width: min(780px, 92vw);
             height: auto;
-            margin: 35px auto 22px;
-            filter: drop-shadow(0 20px 50px rgba(0,0,0,.55));
+            margin: 30px auto 20px;
+            filter: drop-shadow(0 20px 45px rgba(0,140,255,.25));
         }
 
         .hero h1 {
             position: absolute;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-            clip: rect(0 0 0 0);
-            white-space: nowrap;
+            width: 1px; height: 1px; overflow: hidden;
+            clip: rect(0 0 0 0); white-space: nowrap;
         }
 
         .hero-lead {
             max-width: 780px;
             margin: 0 auto;
-            color: #aab4c4;
-            font-size: clamp(1rem, 1.8vw, 1.18rem);
+            color: #9daac0;
+            font-size: clamp(.98rem, 1.7vw, 1.15rem);
+            line-height: 1.7;
         }
 
         .hero-lead strong { color: var(--white); }
@@ -175,262 +169,263 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 30px;
+            gap: 14px;
+            margin-top: 35px;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-height: 46px;
-            padding: 0 20px;
-            border-radius: 11px;
+            gap: 8px;
+            min-height: 48px;
+            padding: 0 24px;
+            border-radius: 12px;
             border: 1px solid transparent;
-            text-decoration: none;
-            font-weight: 750;
-            font-size: .9rem;
-            transition: transform .2s ease, border-color .2s ease, background .2s ease;
+            font-weight: 700;
+            font-size: .88rem;
+            transition: all .2s ease;
         }
 
         .btn:hover { transform: translateY(-2px); }
 
         .btn-primary {
             color: #00111e;
-            background: linear-gradient(135deg, #18a0ff, #0079e8);
-            box-shadow: 0 12px 30px rgba(0,140,255,.18);
+            background: linear-gradient(135deg, #22a0ff, #0076e3);
+            box-shadow: 0 10px 30px rgba(0,140,255,.3);
         }
+
+        .btn-primary:hover { box-shadow: 0 14px 35px rgba(0,140,255,.45); }
 
         .btn-secondary {
             color: var(--white);
-            border-color: var(--line);
-            background: rgba(255,255,255,.025);
+            border-color: rgba(255,255,255,.12);
+            background: rgba(255,255,255,.02);
         }
 
         .btn-secondary:hover {
             border-color: rgba(0,140,255,.4);
-            background: rgba(0,140,255,.06);
+            background: rgba(0,140,255,.07);
         }
 
-        /* SECTIONS */
-        main { padding-bottom: 80px; }
+        /* SECTIONS / LAYOUT */
+        main { padding-bottom: 90px; }
 
-        section { scroll-margin-top: 95px; }
+        section { scroll-margin-top: 100px; }
 
-        .section {
-            margin-top: 28px;
-            padding: 34px;
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            background: linear-gradient(145deg, rgba(15,21,34,.88), rgba(8,12,20,.78));
-            box-shadow: var(--shadow);
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent);
+            margin: 60px 0 20px;
         }
 
-        .section-head {
+        .section-header-flex {
             display: flex;
-            align-items: end;
             justify-content: space-between;
-            gap: 24px;
-            margin-bottom: 26px;
+            align-items: flex-end;
+            margin-bottom: 30px;
+            gap: 20px;
         }
 
         .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             color: var(--blue-2);
-            font-size: .74rem;
-            font-weight: 800;
-            letter-spacing: .14em;
+            font-size: .72rem;
+            font-weight: 850;
+            letter-spacing: .16em;
             text-transform: uppercase;
-            margin-bottom: 7px;
+            margin-bottom: 10px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 18px;
+            height: 2px;
+            background: var(--blue);
         }
 
         h2 {
-            font-size: clamp(1.45rem, 3vw, 2rem);
-            letter-spacing: -.035em;
-            line-height: 1.15;
+            font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+            letter-spacing: -.03em;
+            color: var(--white);
         }
 
-        .section-intro {
-            max-width: 760px;
+        .section-desc {
             color: var(--muted);
+            font-size: .92rem;
+            max-width: 540px;
         }
 
-        .about-grid {
+        /* BLOCO 1: ECOSSISTEMA (Grid Estilo Imagem) */
+        .ecosystem-wrapper {
             display: grid;
-            grid-template-columns: 1.25fr .75fr;
-            gap: 26px;
-        }
-
-        .about-copy {
-            color: #b5bfce;
-            font-size: .98rem;
-        }
-
-        .about-copy strong { color: var(--white); }
-
-        .principles {
-            display: grid;
-            gap: 10px;
-        }
-
-        .principle {
-            padding: 14px 15px;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 30px;
+            align-items: center;
+            padding: 35px 40px;
             border: 1px solid var(--line);
-            border-radius: 13px;
-            background: rgba(255,255,255,.018);
+            border-radius: var(--radius);
+            background: linear-gradient(145deg, rgba(12,17,28,.85), rgba(6,9,16,.75));
+            box-shadow: var(--shadow);
         }
 
-        .principle b {
-            display: block;
+        .eco-main-text h2 span { color: var(--blue-2); }
+        .eco-main-text p {
+            color: #a4b0c4;
+            font-size: .95rem;
+            margin-top: 12px;
+            line-height: 1.65;
+        }
+
+        .eco-features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .eco-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #d2dceb;
             font-size: .86rem;
-            margin-bottom: 3px;
+            font-weight: 600;
         }
 
-        .principle span {
-            color: var(--muted);
-            font-size: .82rem;
+        .eco-feature-item svg {
+            width: 18px;
+            height: 18px;
+            color: var(--blue);
+            flex-shrink: 0;
         }
 
-        /* MODULES */
-        .modules {
+        /* BLOCO 2: MÓDULOS */
+        .modules-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
+            gap: 16px;
         }
 
-        .module {
-            min-height: 190px;
-            padding: 22px;
+        .module-card {
+            padding: 26px 22px;
             position: relative;
             overflow: hidden;
             border: 1px solid var(--line);
-            border-radius: 16px;
-            background:
-                linear-gradient(145deg, rgba(17,25,40,.86), rgba(9,14,24,.72));
-            transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+            border-radius: 18px;
+            background: linear-gradient(145deg, rgba(14,20,33,.85), rgba(7,11,18,.75));
+            box-shadow: var(--shadow);
+            transition: all .25s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 220px;
         }
 
-        .module::after {
-            content: "";
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            right: -55px;
-            bottom: -55px;
-            border-radius: 50%;
-            background: rgba(0,140,255,.13);
-            filter: blur(4px);
+        .module-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0,140,255,.45);
+            box-shadow: 0 20px 50px rgba(0,140,255,.15);
         }
 
-        .module:hover {
-            transform: translateY(-4px);
-            border-color: rgba(0,140,255,.4);
-            box-shadow: 0 18px 45px rgba(0,0,0,.28);
+        .module-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
         }
 
-        .module-index {
-            color: rgba(255,255,255,.28);
-            font-size: .7rem;
-            font-weight: 800;
-            letter-spacing: .12em;
+        .module-icon {
+            color: var(--blue-2);
+            font-size: 1.4rem;
         }
 
-        .module h3 {
-            margin: 18px 0 8px;
-            font-size: 1rem;
-            letter-spacing: -.015em;
+        .module-card h3 {
+            font-size: 1.02rem;
+            font-weight: 750;
+            letter-spacing: -.02em;
+            margin-bottom: 8px;
+            color: var(--white);
         }
 
-        .module p {
+        .module-card p {
             color: var(--muted);
-            font-size: .84rem;
+            font-size: .82rem;
+            line-height: 1.55;
+            margin-bottom: 15px;
         }
 
-        /* GOVERNANCE */
+        .module-arrow {
+            color: var(--blue);
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        /* BLOCO 3: GOVERNANÇA */
         .governance-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
+            gap: 16px;
         }
 
-        .data-card {
-            padding: 20px;
+        .gov-card {
+            padding: 24px;
             border: 1px solid var(--line);
-            border-radius: 15px;
-            background: rgba(255,255,255,.018);
+            border-radius: 16px;
+            background: linear-gradient(145deg, rgba(14,20,33,.85), rgba(7,11,18,.75));
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .data-card .label {
-            display: block;
-            color: #6f7c90;
-            font-size: .7rem;
-            font-weight: 800;
+        .gov-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--blue-2);
+            font-size: .82rem;
+            font-weight: 750;
             text-transform: uppercase;
-            letter-spacing: .11em;
-            margin-bottom: 8px;
+            letter-spacing: .08em;
         }
 
-        .data-card .value {
-            font-size: .94rem;
-            color: #dce3ec;
+        .gov-card p {
+            color: #d1d9e6;
+            font-size: .92rem;
             font-weight: 650;
-        }
-
-        .notice {
-            margin-top: 15px;
-            padding: 15px 17px;
-            border-left: 2px solid var(--blue);
-            background: rgba(0,140,255,.045);
-            color: #9caabd;
-            font-size: .83rem;
-            border-radius: 0 10px 10px 0;
         }
 
         /* FOOTER */
         footer {
-            padding: 45px 0 35px;
+            padding: 40px 0;
             border-top: 1px solid var(--line);
             color: #697587;
             font-size: .78rem;
+            text-align: center;
         }
 
-        .footer-row {
+        .footer-content {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
-        .footer-brand {
-            color: #b9c2ce;
-            font-weight: 750;
+        /* RESPONSIVO */
+        @media (max-width: 1024px) {
+            .modules-grid { grid-template-columns: repeat(2, 1fr); }
+            .ecosystem-wrapper { grid-template-columns: 1fr; padding: 25px; }
         }
 
-        .blue { color: var(--blue-2); }
-
-        @media (max-width: 900px) {
-            .modules { grid-template-columns: repeat(2, 1fr); }
-            .about-grid { grid-template-columns: 1fr; }
-            .governance-grid { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 640px) {
-            .container { width: min(100% - 24px, var(--max)); }
+        @media (max-width: 768px) {
             .nav-links { display: none; }
-            .hero { min-height: 610px; padding-top: 55px; }
-            .logo-hero { width: 100%; margin-top: 30px; }
-            .section { padding: 23px 18px; border-radius: 16px; }
-            .section-head { display: block; }
-            .modules { grid-template-columns: 1fr; }
-            .module { min-height: 160px; }
-            .footer-row { flex-direction: column; align-items: flex-start; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            *, *::before, *::after {
-                transition: none !important;
-                animation: none !important;
-            }
+            .governance-grid { grid-template-columns: 1fr; }
+            .modules-grid { grid-template-columns: 1fr; }
+            .section-header-flex { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -439,11 +434,11 @@
     <div class="nav-wrap">
         <nav class="container" aria-label="Navegação principal">
             <a class="nav-brand" href="#inicio" aria-label="ALCAlab DAO">
-                <span class="brand-dot"></span>
-                <span>ALCA<span class="blue">lab</span> DAO</span>
+                <img src="ALCAlabDAO-logo.png" alt="ALCAlab DAO">
             </a>
 
             <div class="nav-links">
+                <a href="#inicio" class="active">Início</a>
                 <a href="#ecossistema">Ecossistema</a>
                 <a href="#modulos">Módulos</a>
                 <a href="#governanca">Governança</a>
@@ -456,12 +451,11 @@
         <div class="container hero-inner">
             <div class="status">
                 <i></i>
-                Polygon • Chain ID 137 • Fase consultiva
+                Polygon • Chain ID 137 • Fase Consultiva
             </div>
 
             <h1>ALCAlab DAO</h1>
 
-            <!-- Logo fornecido pelo projeto, preservado como elemento central da identidade visual -->
             <img
                 class="logo-hero"
                 src="ALCAlabDAO-logo.png"
@@ -469,156 +463,174 @@
             >
 
             <p class="hero-lead">
-                Ecossistema descentralizado de <strong>pesquisa aplicada</strong>,
-                tecnologia modular e inovação independente, com arquitetura preparada
-                para evolução progressiva e transparência documental.
+                Ecossistema descentralizado de <strong>pesquisa aplicada</strong>, tecnologia modular e inovação independente, com arquitetura preparada para evolução progressiva e transparência documental.
             </p>
 
             <div class="actions">
-                <a class="btn btn-primary" href="#ecossistema">Explorar ecossistema</a>
-                <a class="btn btn-secondary" href="carta-fundamental.html">Carta Fundamental v3.0</a>
-                <a class="btn btn-secondary" href="https://github.com/alcalab/alcalab-dao" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                <a class="btn btn-primary" href="#ecossistema">
+                    Explorar ecossistema 
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a class="btn btn-secondary" href="carta-fundamental.html">
+                    Carta Fundamental v3.0
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a class="btn btn-secondary" href="https://github.com/alcalab/alcalab-dao" target="_blank" rel="noopener noreferrer">
+                    GitHub 
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
             </div>
         </div>
     </header>
 
     <main class="container">
-        <section class="section" id="ecossistema">
-            <div class="section-head">
+        <div class="section-divider"></div>
+
+        <!-- SEÇÃO 01: ECOSSISTEMA -->
+        <section id="ecossistema">
+            <div class="section-header-flex">
                 <div>
-                    <div class="eyebrow">01 / Ecossistema</div>
-                    <h2>Uma arquitetura tecnológica modular.</h2>
+                    <div class="eyebrow">Ecossistema</div>
+                    <h2>Uma arquitetura tecnológica <span>modular.</span></h2>
                 </div>
-                <p class="section-intro">
-                    A proposta organiza projetos, ferramentas e serviços independentes
-                    dentro de uma estrutura comum de documentação, desenvolvimento e evolução.
-                </p>
             </div>
 
-            <div class="about-grid">
-                <div class="about-copy">
+            <div class="ecosystem-wrapper">
+                <div class="eco-main-text">
                     <p>
-                        A <strong>ALCAlab DAO</strong> é apresentada como uma organização
-                        autônoma experimental voltada ao desenvolvimento de tecnologias
-                        modulares, locais e assistidas por inteligência artificial.
-                        Seu ecossistema combina autonomia operacional, documentação,
-                        experimentação tecnológica e mecanismos de governança em evolução.
-                    </p>
-                    <br>
-                    <p>
-                        O núcleo <strong>NO.va GranFuturo</strong> reúne aplicações e motores
-                        especializados que podem funcionar de forma independente ou integrada,
-                        mantendo uma arquitetura expansível.
+                        O ALCAlab DAO integra módulos independentes e <strong>complementares</strong>, formando um ecossistema completo para desenvolvimento, produtividade e inovação.
                     </p>
                 </div>
-
-                <div class="principles">
-                    <div class="principle">
-                        <b>Arquitetura modular</b>
-                        <span>Componentes independentes e expansíveis.</span>
+                <div class="eco-features-grid">
+                    <div class="eco-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Modular
                     </div>
-                    <div class="principle">
-                        <b>Desenvolvimento local</b>
-                        <span>Prioridade para ferramentas e processamento sob controle do projeto.</span>
+                    <div class="eco-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Transparente
                     </div>
-                    <div class="principle">
-                        <b>Transparência documental</b>
-                        <span>Registro claro de versões, estruturas e documentos fundamentais.</span>
+                    <div class="eco-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Escalável
                     </div>
-                    <div class="principle">
-                        <b>Governança progressiva</b>
-                        <span>Estrutura preparada para amadurecimento operacional.</span>
+                    <div class="eco-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Autônomo
+                    </div>
+                    <div class="eco-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Descentralizado
+                    </div>
+                    <div class="eco-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Focado em impacto
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section" id="modulos">
-            <div class="section-head">
+        <div class="section-divider"></div>
+
+        <!-- SEÇÃO 02: MÓDULOS -->
+        <section id="modulos">
+            <div class="section-header-flex">
                 <div>
-                    <div class="eyebrow">02 / NO.va GranFuturo</div>
+                    <div class="eyebrow">NO.va GranFuturo</div>
                     <h2>Módulos do ecossistema.</h2>
                 </div>
-                <p class="section-intro">
-                    Um conjunto de ferramentas especializadas que pode crescer sem
-                    comprometer a identidade central da plataforma.
-                </p>
+                <p class="section-desc">Conheça os módulos centrais que compõem a arquitetura expansível do projeto:</p>
             </div>
 
-            <div class="modules">
-                <article class="module">
-                    <span class="module-index">MODULE 01</span>
-                    <h3>NO.va Code</h3>
-                    <p>Programação em Python e HTML por linguagem natural, com abordagem modular e assistência computacional.</p>
+            <div class="modules-grid">
+                <article class="module-card">
+                    <div>
+                        <div class="module-top-row">
+                            <span class="module-icon">💻</span>
+                        </div>
+                        <h3>NO.va Code</h3>
+                        <p>Programação em Python e HTML por abordagem low-code e assistência computacional orientada a linguagem natural.</p>
+                    </div>
+                    <div class="module-arrow">→</div>
                 </article>
 
-                <article class="module">
-                    <span class="module-index">MODULE 02</span>
-                    <h3>Calculadora GranFuturo</h3>
-                    <p>Conversões, registros, consolidação de operações e geração estruturada de memória de cálculo.</p>
+                <article class="module-card">
+                    <div>
+                        <div class="module-top-row">
+                            <span class="module-icon">🧮</span>
+                        </div>
+                        <h3>Calculadora GranFuturo</h3>
+                        <p>Conversões avançadas de unidades, registro e consolidação de operações com geração de memória de cálculo.</p>
+                    </div>
+                    <div class="module-arrow">→</div>
                 </article>
 
-                <article class="module">
-                    <span class="module-index">MODULE 03</span>
-                    <h3>NO.va CAD</h3>
-                    <p>Leitura, criação, edição e análise de desenhos técnicos em um ambiente CAD modular.</p>
+                <article class="module-card">
+                    <div>
+                        <div class="module-top-row">
+                            <span class="module-icon">📐</span>
+                        </div>
+                        <h3>NO.va CAD</h3>
+                        <p>Leitura, criação, edição e análise de desenhos técnicos assistidos por computador em ambiente modular.</p>
+                    </div>
+                    <div class="module-arrow">→</div>
                 </article>
 
-                <article class="module">
-                    <span class="module-index">MODULE 04</span>
-                    <h3>Utilitários Locais</h3>
-                    <p>Ferramentas auxiliares para notas, compactação, agenda e pesquisa rápida em diretórios.</p>
+                <article class="module-card">
+                    <div>
+                        <div class="module-top-row">
+                            <span class="module-icon">📁</span>
+                        </div>
+                        <h3>Utilitários Locais</h3>
+                        <p>Bloco de notas integrado, compactador de arquivos, agenda eletrônica e sistema de pesquisa rápida em diretórios.</p>
+                    </div>
+                    <div class="module-arrow">→</div>
                 </article>
             </div>
         </section>
 
-        <section class="section" id="governanca">
-            <div class="section-head">
+        <div class="section-divider"></div>
+
+        <!-- SEÇÃO 03: GOVERNANÇA -->
+        <section id="governanca">
+            <div class="section-header-flex">
                 <div>
-                    <div class="eyebrow">03 / Governança</div>
-                    <h2>Transparência e infraestrutura.</h2>
+                    <div class="eyebrow">Governança e Transparência On-chain</div>
+                    <h2>Infraestrutura e controle.</h2>
                 </div>
-                <p class="section-intro">
-                    Informações operacionais apresentadas de forma objetiva, separando
-                    estado atual, infraestrutura e documentação.
-                </p>
             </div>
 
             <div class="governance-grid">
-                <div class="data-card">
-                    <span class="label">Fase atual</span>
-                    <span class="value">Fase Fundadora — caráter consultivo e transicional</span>
+                <div class="gov-card">
+                    <div class="gov-card-header">
+                        👥 Fase Atual
+                    </div>
+                    <p>Fase Fundadora (Caráter Consultivo e Transicional).</p>
                 </div>
 
-                <div class="data-card">
-                    <span class="label">Tesouraria</span>
-                    <span class="value">Safe / Gnosis — Polygon PoS — em estruturação final</span>
+                <div class="gov-card">
+                    <div class="gov-card-header">
+                        🛡️ Tesouraria
+                    </div>
+                    <p>Safe (Gnosis) na rede Polygon PoS (Em estruturação final).</p>
                 </div>
 
-                <div class="data-card">
-                    <span class="label">Versão vigente</span>
-                    <span class="value">Publicação: 21/09/2026</span>
+                <div class="gov-card">
+                    <div class="gov-card-header">
+                        📅 Versão Vigente
+                    </div>
+                    <p>21/09/2026<br><span style="font-size: 0.78rem; color: var(--muted); font-weight: normal;">(Carta Fundamental v3.0)</span></p>
                 </div>
-            </div>
-
-            <div class="notice">
-                As informações desta página são institucionais e descritivas. A Carta
-                Fundamental e os documentos oficiais do projeto devem prevalecer sobre
-                esta página em caso de divergência de conteúdo ou versão.
-            </div>
-
-            <div class="actions" style="justify-content:flex-start;">
-                <a class="btn btn-primary" href="carta-fundamental.html">Abrir Carta Fundamental</a>
-                <a class="btn btn-secondary" href="https://github.com/alcalab/alcalab-dao" target="_blank" rel="noopener noreferrer">Repositório GitHub ↗</a>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container footer-row">
-            <div class="footer-brand">ALCA<span class="blue">lab</span> DAO</div>
-            <div>Licenciamento autônomo e experimental sob os termos da Carta Fundamental.</div>
-            <div>© 2026 ALCAlab DAO</div>
+        <div class="container">
+            <div class="footer-content">
+                <span>© ALCAlab DAO.</span>
+                <span>Licenciamento autônomo e experimental sob os termos da Carta Fundamental.</span>
+            </div>
         </div>
     </footer>
 </body>
