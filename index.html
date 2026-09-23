@@ -140,7 +140,7 @@
 
         .logo-hero {
             display: block;
-            width: min(420px, 75vw); /* Reduzido para encaixar perfeitamente sem rolar */
+            width: min(420px, 75vw);
             height: auto;
             margin: 15px auto 15px;
             filter: drop-shadow(0 15px 35px rgba(0,140,255,.22));
@@ -299,26 +299,22 @@
             flex-shrink: 0;
         }
 
-        /* MÓDULOS */
+        /* MÓDULOS (VITRINE COM PRINTS TRATADOS) */
         .modules-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
         }
 
         .module-card {
-            padding: 24px 20px;
-            position: relative;
-            overflow: hidden;
             border: 1px solid var(--line);
             border-radius: 18px;
             background: linear-gradient(145deg, rgba(14,20,33,.85), rgba(7,11,18,.75));
             box-shadow: var(--shadow);
+            overflow: hidden;
             transition: all .25s ease;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            min-height: 210px;
         }
 
         .module-card:hover {
@@ -327,40 +323,69 @@
             box-shadow: 0 20px 50px rgba(0,140,255,.15);
         }
 
-        .module-top-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
+        .module-image-box {
+            width: 100%;
+            height: 180px;
+            background: #020408;
+            border-bottom: 1px solid var(--line);
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            position: relative;
         }
 
-        .module-icon { font-size: 1.3rem; }
+        .module-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+            transition: opacity .2s ease;
+        }
+
+        .module-card:hover .module-image-box img {
+            opacity: 1;
+        }
+
+        .module-content {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
 
         .module-card h3 {
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 750;
             letter-spacing: -.02em;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             color: var(--white);
         }
 
         .module-card p {
             color: var(--muted);
-            font-size: .8rem;
+            font-size: .82rem;
             line-height: 1.5;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
-        .module-arrow {
-            color: var(--blue);
-            font-size: .95rem;
-            font-weight: bold;
+        .module-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(0,140,255,.1);
+            color: #7ec8ff;
+            font-size: .7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            align-self: flex-start;
         }
 
-        /* GOVERNANÇA */
+        /* GOVERNANÇA & CONTATO */
         .governance-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 16px;
         }
 
@@ -412,7 +437,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
@@ -442,9 +467,9 @@
             <div class="nav-links">
                 <a href="#inicio" class="active">Início</a>
                 <a href="#ecossistema">Ecossistema</a>
-                <a href="#modulos">Módulos</a>
+                <a href="#modulos">Vitrine</a>
                 <a href="#governanca">Governança</a>
-                <a href="carta-fundamental.html">Carta Fundamental</a>
+                <a href="#contato">Contato</a>
             </div>
         </nav>
     </div>
@@ -453,7 +478,7 @@
         <div class="container hero-inner">
             <div class="status">
                 <i></i>
-                Polygon • Chain ID 137 • Fase Consultiva
+                Polygon • Chain ID 137 • DAO Ativa
             </div>
 
             <h1>ALCAlab DAO</h1>
@@ -469,12 +494,12 @@
             </p>
 
             <div class="actions">
-                <a class="btn btn-primary" href="#ecossistema">
-                    Explorar ecossistema 
+                <a class="btn btn-primary" href="#modulos">
+                    Ver Vitrine Tecnológica 
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-                <a class="btn btn-secondary" href="carta-fundamental.html">
-                    Carta Fundamental v3.0
+                <a class="btn btn-secondary" href="#governanca">
+                    Dados On-chain
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
                 <a class="btn btn-secondary" href="https://github.com/alcalab/alcalab-dao" target="_blank" rel="noopener noreferrer">
@@ -500,7 +525,7 @@
             <div class="ecosystem-wrapper">
                 <div class="eco-main-text">
                     <p>
-                        O ALCAlab DAO integra módulos independentes e <strong>complementares</strong>, formando um ecossistema completo para desenvolvimento, produtividade e inovação.
+                        O ALCAlab DAO integra módulos independentes e <strong>complementares</strong>, formando um ecossistema seguro voltado ao desenvolvimento de agentes low-code assistidos e ferramentas de alta precisão.
                     </p>
                 </div>
                 <div class="eco-features-grid">
@@ -520,108 +545,125 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                         Autônomo
                     </div>
-                    <div class="eco-feature-item">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        Descentralizado
-                    </div>
-                    <div class="eco-feature-item">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        Focado em impacto
-                    </div>
                 </div>
             </div>
         </section>
 
         <div class="section-divider"></div>
 
-        <!-- SEÇÃO 02: MÓDULOS -->
+        <!-- SEÇÃO 02: MÓDULOS / VITRINE COM PRINTS TRATADOS -->
         <section id="modulos">
             <div class="section-header-flex">
                 <div>
-                    <div class="eyebrow">NO.va GranFuturo</div>
-                    <h2>Módulos do ecossistema.</h2>
+                    <div class="eyebrow">Vitrine de Soluções</div>
+                    <h2>Tecnologia e Engenharia de Software.</h2>
                 </div>
-                <p class="section-desc">Conheça os módulos centrais que compõem a arquitetura expansível do projeto:</p>
+                <p class="section-desc">Apresentação institucional dos sistemas proprietários desenvolvidos sob a tutela da DAO:</p>
             </div>
 
             <div class="modules-grid">
+                <!-- NO.va Code -->
                 <article class="module-card">
-                    <div>
-                        <div class="module-top-row">
-                            <span class="module-icon">💻</span>
-                        </div>
-                        <h3>NO.va Code</h3>
-                        <p>Programação em Python e HTML por abordagem low-code e assistência computacional orientada a linguagem natural.</p>
+                    <div class="module-image-box">
+                        <!-- Substitua 'nova-code.png' pelo nome real do print tratado -->
+                        <img src="nova-code.png" alt="Interface NO.va Code" onerror="this.style.display='none'">
+                        <span style="position:absolute; font-size: 0.75rem; color: var(--muted);" onerror="this.style.display='block'">[ Espaço para Print: NO.va Code ]</span>
                     </div>
-                    <div class="module-arrow">→</div>
+                    <div class="module-content">
+                        <div>
+                            <span class="module-badge">Agente Low-code</span>
+                            <h3 style="margin-top: 10px;">NO.va Code</h3>
+                            <p>Motor modular de tradução, geração de código e diagnósticos em tempo real com assistência especializada em Python.</p>
+                        </div>
+                    </div>
                 </article>
 
+                <!-- NÔVA CAD -->
                 <article class="module-card">
-                    <div>
-                        <div class="module-top-row">
-                            <span class="module-icon">🧮</span>
-                        </div>
-                        <h3>Calculadora GranFuturo</h3>
-                        <p>Conversões avançadas de unidades, registro e consolidação de operações com geração de memória de cálculo.</p>
+                    <div class="module-image-box">
+                        <!-- Substitua 'nova-cad.png' pelo nome real do print tratado -->
+                        <img src="nova-cad.png" alt="Interface NÔVA CAD" onerror="this.style.display='none'">
+                        <span style="position:absolute; font-size: 0.75rem; color: var(--muted);">[ Espaço para Print: NÔVA CAD ]</span>
                     </div>
-                    <div class="module-arrow">→</div>
+                    <div class="module-content">
+                        <div>
+                            <span class="module-badge">Ambiente Gráfico</span>
+                            <h3 style="margin-top: 10px;">NÔVA CAD</h3>
+                            <p>Ferramenta de precisão e desenho técnico integrado com automação de camadas e controle de layout avançado.</p>
+                        </div>
+                    </div>
                 </article>
 
+                <!-- ALCA_DIAG -->
                 <article class="module-card">
-                    <div>
-                        <div class="module-top-row">
-                            <span class="module-icon">📐</span>
-                        </div>
-                        <h3>NO.va CAD</h3>
-                        <p>Leitura, criação, edição e análise de desenhos técnicos assistidos por computador em ambiente modular.</p>
+                    <div class="module-image-box">
+                        <!-- Substitua 'alca-diag.png' pelo nome real do print tratado -->
+                        <img src="alca-diag.png" alt="Interface ALCA_DIAG" onerror="this.style.display='none'">
+                        <span style="position:absolute; font-size: 0.75rem; color: var(--muted);">[ Espaço para Print: ALCA_DIAG ]</span>
                     </div>
-                    <div class="module-arrow">→</div>
-                </article>
-
-                <article class="module-card">
-                    <div>
-                        <div class="module-top-row">
-                            <span class="module-icon">📁</span>
+                    <div class="module-content">
+                        <div>
+                            <span class="module-badge">HexaLink Core</span>
+                            <h3 style="margin-top: 10px;">ALCA_DIAG</h3>
+                            <p>Central de controle universal, launcher modular e gerenciamento inteligente de bibliotecas e debug do ecossistema.</p>
                         </div>
-                        <h3>Utilitários Locais</h3>
-                        <p>Bloco de notas integrado, compactador de arquivos, agenda eletrônica e sistema de pesquisa rápida em diretórios.</p>
                     </div>
-                    <div class="module-arrow">→</div>
                 </article>
             </div>
         </section>
 
         <div class="section-divider"></div>
 
-        <!-- SEÇÃO 03: GOVERNANÇA -->
+        <!-- SEÇÃO 03: GOVERNANÇA E DADOS ON-CHAIN -->
         <section id="governanca">
             <div class="section-header-flex">
                 <div>
-                    <div class="eyebrow">Governança e Transparência On-chain</div>
-                    <h2>Infraestrutura e controle.</h2>
+                    <div class="eyebrow">Transparência On-Chain</div>
+                    <h2>Infraestrutura de Governança.</h2>
                 </div>
             </div>
 
             <div class="governance-grid">
                 <div class="gov-card">
                     <div class="gov-card-header">
-                        👥 Fase Atual
-                    </div>
-                    <p>Fase Fundadora <br><span class="sub-info">Caráter Consultivo e Transicional</span></p>
-                </div>
-
-                <div class="gov-card">
-                    <div class="gov-card-header">
                         🛡️ Tesouraria Safe (Polygon)
                     </div>
-                    <p style="font-size: 0.8rem; letter-spacing: -0.02em;">0x2D4916...cc73d3C3<br><span class="sub-info">Endereço Oficial On-chain (CNPJ DAO)</span></p>
+                    <p style="font-size: 0.82rem;">0x2D4916F281eAcc715cf70370276ff3cAcc73d3C3<br><span class="sub-info">Endereço Oficial On-chain / DAO</span></p>
                 </div>
 
                 <div class="gov-card">
                     <div class="gov-card-header">
-                        📅 Versão Vigente
+                        📜 Carta Fundamental v4.0 (Hash)
                     </div>
-                    <p>22/09/2026<br><span class="sub-info">Carta Fundamental v3.0</span></p>
+                    <p style="font-size: 0.75rem; line-height: 1.4;">0x78ef493ca7b9f7fe779bf0a494c80efa2caf89faa94fc690f27d56b044b4cb12<br><span class="sub-info">Ancoragem definitiva na Polygon (TxID)</span></p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- SEÇÃO 04: CONTATO -->
+        <section id="contato">
+            <div class="section-header-flex">
+                <div>
+                    <div class="eyebrow">Conexão Direta</div>
+                    <h2>Canais de Contato.</h2>
+                </div>
+            </div>
+
+            <div class="governance-grid">
+                <div class="gov-card">
+                    <div class="gov-card-header">
+                        ✉️ Correio Eletrônico (E-mail)
+                    </div>
+                    <p style="font-size: 0.9rem;">contato@alcalab.com <span class="sub-info">(ou canal institucional correspondente)</span></p>
+                </div>
+
+                <div class="gov-card">
+                    <div class="gov-card-header">
+                        💬 Session (Contato Descentralizado)
+                    </div>
+                    <p style="font-size: 0.72rem; line-height: 1.4;">05d211ae35dd42516e8e587ffa1fe9c8c46d030a9c8666905106ea2858577d9428<br><span class="sub-info">Canal criptografado direto (Particular)</span></p>
                 </div>
             </div>
         </section>
@@ -631,7 +673,7 @@
         <div class="container">
             <div class="footer-content">
                 <span>© ALCAlab DAO.</span>
-                <span>Licenciamento autônomo e experimental sob os termos da Carta Fundamental.</span>
+                <span>Ecossistema tecnológico independente sob a governança da Carta Fundamental on-chain.</span>
             </div>
         </div>
     </footer>
