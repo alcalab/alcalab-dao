@@ -89,7 +89,7 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 32px;
+            gap: 28px;
         }
 
         .nav-links a {
@@ -382,6 +382,109 @@
             align-self: flex-start;
         }
 
+        /* ESTILOS ESPECÍFICOS DA ABA DE AQUISIÇÃO */
+        .disclaimer-box {
+            background: rgba(255, 153, 0, 0.08);
+            border: 1px solid rgba(255, 153, 0, 0.3);
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin-bottom: 30px;
+            color: #ffcc66;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .disclaimer-box strong { color: #fff; }
+
+        .aquisicao-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .produto-aquisicao-card {
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: linear-gradient(145deg, rgba(14,20,33,.85), rgba(7,11,18,.75));
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: var(--shadow);
+        }
+
+        .produto-aquisicao-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+
+        .codigo-tag {
+            font-size: 0.75rem;
+            color: var(--blue-2);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .produto-aquisicao-card p {
+            color: var(--muted);
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+
+        .preco-bloco {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.85rem;
+        }
+
+        .preco-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .preco-item .label { color: var(--muted); }
+        .preco-item .valor-destaque {
+            font-weight: 800;
+            color: var(--white);
+            font-family: monospace;
+            font-size: 0.95rem;
+        }
+        .preco-item .valor-destaque span { color: var(--blue-2); }
+
+        .instrucoes-pagamento-box {
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: linear-gradient(145deg, rgba(14,20,33,.85), rgba(7,11,18,.75));
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .instrucoes-pagamento-box h3 { margin-bottom: 15px; font-size: 1.1rem; }
+        .instrucoes-pagamento-box ol { padding-left: 20px; color: var(--muted); font-size: 0.9rem; display: flex; flex-direction: column; gap: 10px; }
+        .instrucoes-pagamento-box ol li strong { color: var(--white); }
+
+        .safe-box-destaque {
+            margin-top: 20px;
+            background: rgba(0,140,255,.05);
+            border: 1px solid var(--line-blue);
+            border-radius: 12px;
+            padding: 16px;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #7ec8ff;
+        }
+
         /* GOVERNANÇA & CONTATO */
         .governance-grid {
             display: grid;
@@ -444,6 +547,7 @@
         /* RESPONSIVO */
         @media (max-width: 1024px) {
             .modules-grid { grid-template-columns: repeat(2, 1fr); }
+            .aquisicao-grid { grid-template-columns: 1fr; }
             .ecosystem-wrapper { grid-template-columns: 1fr; padding: 24px; }
             .hero { min-height: auto; padding: 50px 0; }
         }
@@ -468,6 +572,7 @@
                 <a href="#inicio" class="active">Início</a>
                 <a href="#ecossistema">Ecossistema</a>
                 <a href="#modulos">Vitrine</a>
+                <a href="#aquisicao">Aquisição</a>
                 <a href="#governanca">Governança</a>
                 <a href="#contato">Contato</a>
             </div>
@@ -498,8 +603,8 @@
                     Ver Vitrine Tecnológica 
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-                <a class="btn btn-secondary" href="#governanca">
-                    Dados On-chain
+                <a class="btn btn-secondary" href="#aquisicao">
+                    Portal de Aquisição
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
                 <a class="btn btn-secondary" href="https://github.com/alcalab/alcalab-dao" target="_blank" rel="noopener noreferrer">
@@ -608,6 +713,114 @@
 
         <div class="section-divider"></div>
 
+        <!-- SEÇÃO 02.1: ABA DE AQUISIÇÃO / BUY -->
+        <section id="aquisicao">
+            <div class="section-header-flex">
+                <div>
+                    <div class="eyebrow">Portal de Aquisição</div>
+                    <h2>Diretrizes e Valores para Obtenção.</h2>
+                </div>
+                <p class="section-desc">Processo guiado institucional para aquisição de licenças e acesso aos softwares da ALCAlab DAO.</p>
+            </div>
+
+            <!-- AVISO DE DESENVOLVIMENTO -->
+            <div class="disclaimer-box">
+                <strong>AVISO IMPORTANTE: FASE DE DESENVOLVIMENTO ATIVO</strong><br>
+                Todos os softwares da ALCAlab DAO encontram-se em fase de desenvolvimento. Solicitações imediatas estão sujeitas ao recebimento de versões parciais ou incompletas. <strong>Sugerimos fortemente entrar em contato via e-mail</strong> antes de efetuar transações, para validar o estágio atual do escopo e alinhamento de entregas.
+            </div>
+
+            <!-- CARDS DOS PRODUTOS E VALORES -->
+            <div class="aquisicao-grid">
+                <!-- 1. NO.va Code -->
+                <div class="produto-aquisicao-card">
+                    <div>
+                        <span class="codigo-tag">Cód: NVC-001</span>
+                        <h3>NO.va Code</h3>
+                        <p>Assistente low-code especializado em geração de rotinas e tradução de código.</p>
+                    </div>
+                    <div class="preco-bloco">
+                        <div class="preco-item">
+                            <span class="label">Referência BRL:</span>
+                            <span class="valor-destaque"><span>R$</span> 630,00</span>
+                        </div>
+                        <div class="preco-item">
+                            <span class="label">Dólar Digital:</span>
+                            <span class="valor-destaque"><span>US$</span> 126,00</span>
+                        </div>
+                        <div class="preco-item">
+                            <span class="label">POL (+15% ref):</span>
+                            <span class="valor-destaque"><span>POL</span> ~145</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. NÔVA CAD -->
+                <div class="produto-aquisicao-card">
+                    <div>
+                        <span class="codigo-tag">Cód: NCAD-001</span>
+                        <h3>NÔVA CAD</h3>
+                        <p>Ferramenta de precisão e desenho técnico estruturado.</p>
+                    </div>
+                    <div class="preco-bloco">
+                        <div class="preco-item">
+                            <span class="label">Referência BRL:</span>
+                            <span class="valor-destaque"><span>R$</span> 750,00</span>
+                        </div>
+                        <div class="preco-item">
+                            <span class="label">Dólar Digital:</span>
+                            <span class="valor-destaque"><span>US$</span> 150,00</span>
+                        </div>
+                        <div class="preco-item">
+                            <span class="label">POL (+15% ref):</span>
+                            <span class="valor-destaque"><span>POL</span> ~172</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. NOVA DIAG -->
+                <div class="produto-aquisicao-card">
+                    <div>
+                        <span class="codigo-tag">Cód: NDAG-001</span>
+                        <h3>NOVA DIAG</h3>
+                        <p>Lançador universal, central de ecossistema e instalador integrado (inclui versões encapsuladas de CODE + CAD).</p>
+                    </div>
+                    <div class="preco-bloco">
+                        <div class="preco-item">
+                            <span class="label">Referência BRL:</span>
+                            <span class="valor-destaque"><span>R$</span> 1.500,00</span>
+                        </div>
+                        <div class="preco-item">
+                            <span class="label">Dólar Digital:</span>
+                            <span class="valor-destaque"><span>US$</span> 300,00</span>
+                        </div>
+                        <div class="preco-item">
+                            <span class="label">POL (+15% ref):</span>
+                            <span class="valor-destaque"><span>POL</span> ~345</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INSTRUÇÕES E ENDEREÇO DE SAFE -->
+            <div class="instrucoes-pagamento-box">
+                <h3>Instruções de Pagamento e Rede</h3>
+                <ol>
+                    <li><strong>Rede Exclusiva:</strong> Utilize estritamente a rede <strong>Polygon PoS</strong> (Chain ID 137). Não envie ativos de outras redes.</li>
+                    <li><strong>Ativos Aceitos:</strong> Apenas <strong>POL</strong>, <strong>USDC (Polygon)</strong> ou <strong>USDT (Polygon)</strong>.</li>
+                    <li><strong>Transferência Direta:</strong> Envie o montante correspondente diretamente para o Safe oficial da DAO abaixo:</li>
+                </ol>
+                <div class="safe-box-destaque">
+                    0x2D4916F281eAcc715cf70370276ff3cAcc73d3C3
+                </div>
+                <ol style="margin-top: 15px;">
+                    <li><strong>Obtenção do TXID:</strong> Após concluir a transação, copie o identificador da transação (TXID / Hash).</li>
+                    <li><strong>Envio de Dados:</strong> Encaminhe o <strong>Código do Produto</strong>, o <strong>TXID</strong> e o seu <strong>E-mail</strong> para nossos canais oficiais (E-mail ou Session) para verificação manual e envio do pacote seguro.</li>
+                </ol>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
         <!-- SEÇÃO 03: GOVERNANÇA E DADOS ON-CHAIN -->
         <section id="governanca">
             <div class="section-header-flex">
@@ -670,9 +883,6 @@
                 <span>Ecossistema tecnológico independente sob a governança da Carta Fundamental on-chain.</span>
             </div>
         </div>
-    </footer>
-</body>
-</html>
     </footer>
 </body>
 </html>
