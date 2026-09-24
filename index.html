@@ -442,7 +442,7 @@
             padding: 14px;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
             font-size: 0.85rem;
         }
 
@@ -458,8 +458,31 @@
             color: var(--white);
             font-family: monospace;
             font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         .preco-item .valor-destaque span { color: var(--blue-2); }
+
+        /* SÍMBOLO DA POLYGON (HEXÁGONO DUPLO) */
+        .polygon-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            background: radial-gradient(circle, #8247e5 0%, #5d1bb5 100%);
+            border-radius: 50%;
+            padding: 2px;
+            box-shadow: 0 0 8px rgba(130, 71, 229, 0.4);
+            flex-shrink: 0;
+        }
+
+        .polygon-icon svg {
+            width: 11px;
+            height: 11px;
+            fill: #ffffff;
+        }
 
         .instrucoes-pagamento-box {
             border: 1px solid var(--line);
@@ -729,7 +752,7 @@
                 Todos os softwares da ALCAlab DAO encontram-se em fase de desenvolvimento. Solicitações imediatas estão sujeitas ao recebimento de versões parciais ou incompletas. <strong>Sugerimos fortemente entrar em contato via e-mail</strong> antes de efetuar transações, para validar o estágio atual do escopo e alinhamento de entregas.
             </div>
 
-            <!-- CARDS DOS PRODUTOS E VALORES -->
+            <!-- CARDS DOS PRODUTOS E VALORES COM O ACRESCIMO EMBUTIDO E SÍMBOLO DA POLYGON -->
             <div class="aquisicao-grid">
                 <!-- 1. NO.va Code -->
                 <div class="produto-aquisicao-card">
@@ -748,8 +771,15 @@
                             <span class="valor-destaque"><span>US$</span> 126,00</span>
                         </div>
                         <div class="preco-item">
-                            <span class="label">POL (+15% ref):</span>
-                            <span class="valor-destaque"><span>POL</span> ~145</span>
+                            <span class="label">Polygon (POL):</span>
+                            <span class="valor-destaque">
+                                <span class="polygon-icon" title="Polygon POL">
+                                    <svg viewBox="0 0 35 32" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M27.75 11.23h-3.48v3.48h3.48c1.92 0 3.48 1.56 3.48 3.48s-1.56 3.48-3.48 3.48h-3.48v3.48h3.48c3.84 0 6.96-3.12 6.96-6.96s-3.12-6.96-6.96-6.96zm-9.27 0h-3.48v3.48h3.48c1.92 0 3.48 1.56 3.48 3.48s-1.56 3.48-3.48 3.48h-3.48v3.48h3.48c3.84 0 6.96-3.12 6.96-6.96s-3.12-6.96-6.96-6.96zm-9.27 0H5.73C1.89 11.23-.23 14.35-.23 18.19s2.12 6.96 5.96 6.96h3.48v-3.48H5.73c-1.92 0-3.48-1.56-3.48-3.48s1.56-3.48 3.48-3.48h3.48v-3.48z"/>
+                                    </svg>
+                                </span>
+                                1.366,98 POL
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -771,8 +801,15 @@
                             <span class="valor-destaque"><span>US$</span> 150,00</span>
                         </div>
                         <div class="preco-item">
-                            <span class="label">POL (+15% ref):</span>
-                            <span class="valor-destaque"><span>POL</span> ~172</span>
+                            <span class="label">Polygon (POL):</span>
+                            <span class="valor-destaque">
+                                <span class="polygon-icon" title="Polygon POL">
+                                    <svg viewBox="0 0 35 32" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M27.75 11.23h-3.48v3.48h3.48c1.92 0 3.48 1.56 3.48 3.48s-1.56 3.48-3.48 3.48h-3.48v3.48h3.48c3.84 0 6.96-3.12 6.96-6.96s-3.12-6.96-6.96-6.96zm-9.27 0h-3.48v3.48h3.48c1.92 0 3.48 1.56 3.48 3.48s-1.56 3.48-3.48 3.48h-3.48v3.48h3.48c3.84 0 6.96-3.12 6.96-6.96s-3.12-6.96-6.96-6.96zm-9.27 0H5.73C1.89 11.23-.23 14.35-.23 18.19s2.12 6.96 5.96 6.96h3.48v-3.48H5.73c-1.92 0-3.48-1.56-3.48-3.48s1.56-3.48 3.48-3.48h3.48v-3.48z"/>
+                                    </svg>
+                                </span>
+                                1.316,86 POL
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -794,8 +831,15 @@
                             <span class="valor-destaque"><span>US$</span> 300,00</span>
                         </div>
                         <div class="preco-item">
-                            <span class="label">POL (+15% ref):</span>
-                            <span class="valor-destaque"><span>POL</span> ~345</span>
+                            <span class="label">Polygon (POL):</span>
+                            <span class="valor-destaque">
+                                <span class="polygon-icon" title="Polygon POL">
+                                    <svg viewBox="0 0 35 32" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M27.75 11.23h-3.48v3.48h3.48c1.92 0 3.48 1.56 3.48 3.48s-1.56 3.48-3.48 3.48h-3.48v3.48h3.48c3.84 0 6.96-3.12 6.96-6.96s-3.12-6.96-6.96-6.96zm-9.27 0h-3.48v3.48h3.48c1.92 0 3.48 1.56 3.48 3.48s-1.56 3.48-3.48 3.48h-3.48v3.48h3.48c3.84 0 6.96-3.12 6.96-6.96s-3.12-6.96-6.96-6.96zm-9.27 0H5.73C1.89 11.23-.23 14.35-.23 18.19s2.12 6.96 5.96 6.96h3.48v-3.48H5.73c-1.92 0-3.48-1.56-3.48-3.48s1.56-3.48 3.48-3.48h3.48v-3.48z"/>
+                                    </svg>
+                                </span>
+                                3.254,72 POL
+                            </span>
                         </div>
                     </div>
                 </div>
